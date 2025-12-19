@@ -35,7 +35,7 @@ Create a `.env` file in the project root.
 
 ```env
 DB_HOST=localhost
-DB_PORT=5432
+DB_PORT=3002
 DB_USER=app_user
 DB_PASSWORD=passw
 DB_NAME=app_db
