@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: node_ts_postgres
+    environment:
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: passw
+      POSTGRES_DB: app_db
+    ports:
+      - "3002:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql
+
+volumes:
+  pgdata:
+    name: pgdata
