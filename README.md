@@ -43,20 +43,12 @@ DB_NAME=app_db
 
 ## How to Start the Project (Development)
 
-### 1. Install dependencies
+### 1. Start the app and PostgreSQL using Docker
+
+Build the app and start the two containers in detached mode.
 
 ```bash
-npm install
-```
-
----
-
-### 2. Start PostgreSQL using Docker
-
-Start the database container in detached mode.
-
-```bash
-docker compose up -d postgres
+docker compose up -d --build
 ```
 
 PostgreSQL will:
@@ -64,7 +56,10 @@ PostgreSQL will:
 - Expose port `3002`
 - Persist data using a named Docker volume
 
-To stop the database without deleting data:
+The app will:
+- Expose port `3001` to localhost
+
+To stop them without deleting data:
 
 ```bash
 docker compose down
