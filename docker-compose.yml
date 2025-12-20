@@ -11,7 +11,29 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql
       - ./db/init:/docker-entrypoint-initdb.d
+    networks:
+      - node_ts_pg
+
+  node_ts: 
+    build:  # when compose up, automatically build app with flag --build.
+      context: .
+      dockerfile: Dockerfile
+    image: node_ts_multi_stages:latest  # this name will be assigned to the new built image
+    container_name: node_ts_app
+    env_file:  # mount the .env at runtime (when we do: docker compose up)
+      - .env
+    ports:
+      - "3001:3000"
+    networks:
+      - node_ts_pg
+    depends_on:  # make sure service node_ts run after service postgres
+      - postgres
 
 volumes:
   pgdata:
     name: pgdata
+
+networks:
+  node_ts_pg:
+    name: node_ts_pg
+    driver: bridge
