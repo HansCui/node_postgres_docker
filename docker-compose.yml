@@ -10,7 +10,7 @@ services:
       - "3002:5432"
     volumes:
       - pgdata:/var/lib/postgresql
-      - ./db/init:/docker-entrypoint-initdb.d
+      - ./db/init:/docker-entrypoint-initdb.d  # if db not found, auto initialize the db scenario according to files in ./db/init, in order. 
     networks:
       - node_ts_pg
 
